@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="description" content="Cópia do Bate-papo UOL">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="Maria Luiza M">
+    <title>Bate-papo UOL</title>
     <link rel="stylesheet" href="styles/reset.css">
     <link rel="stylesheet" href="styles/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,22 +24,7 @@
     </header>
 
     <main>
-        <div class="mensagem entrada">
-            <p class="mensagem"><span class="time">(09:21:45) </span><strong class="nome">João</strong> entra na sala...</p>
-        </div>
-        <div class="mensagem normal">
-            <p class="mensagem"><span class="time">(09:22:28) </span><strong class="nome">João</strong> para <strong class="nome">Todos</strong>: Bom dia</p>
-        </div>
-        <div class="mensagem normal">
-            <p class="mensagem"><span class="time">(09:22:38) </span><strong class="nome">Maria</strong> para <strong class="nome">João</strong>: Oi João :)</p>
-        </div>
-        <div class="mensagem reservada">
-            <p class="mensagem"><span class="time">(09:22:48) </span><strong class="nome">João</strong> reservadamente para <strong class="nome">Maria</strong>: Oi
-                gatinha quer tc?</p>
-        </div>
-        <div class="mensagem entrada">
-            <p class="mensagem"><span class="time">(09:22:58) </span><strong class="nome">Maria</strong> sai da sala...</p>
-        </div>
+        <!-- Será construído dinamicamente com o JS -->
     </main>
 
     <footer>
@@ -44,7 +32,10 @@
         <ion-icon name="paper-plane-outline"></ion-icon>
     </footer>
 
-    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="scripts/script.js"></script>
 </body>
 
 </html>

@@ -48,7 +48,7 @@ main>.mensagem {
     font-weight: 400;
 }
 
-.entrada {
+.status {
     background-color: #DCDCDC;
 }
 
@@ -81,6 +81,7 @@ footer{
 }
 
 input{
+    width: 300px;
     font-size: 18px;
     font-style: italic;
     color: #000;
