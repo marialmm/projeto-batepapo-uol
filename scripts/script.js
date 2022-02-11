@@ -1,21 +1,24 @@
 let usuario = prompt('Qual seu nome?');
+let objetoUsuario = null;
 const chat = document.querySelector('main');
 let ultimaMensagem = null;
 let intervaloUm = null;
 let intervaloDois = null;
+let to = 'Todos';
+let type = 'message';
 
 function entrarNaSala(){
-    usuario = {
+    objetoUsuario = {
         name: usuario
     };
-    const promessa = axios.post('https://mock-api.driven.com.br/api/v4/uol/participants', usuario);
+    const promessa = axios.post('https://mock-api.driven.com.br/api/v4/uol/participants', objetoUsuario);
     promessa.then(carregarMensagens);
     promessa.then(permanecerNaSala);
     promessa.catch(checarUsuario);
 }
 
 function enviarUsuario(){
-    const promessa = axios.post('https://mock-api.driven.com.br/api/v4/uol/status', usuario);
+    const promessa = axios.post('https://mock-api.driven.com.br/api/v4/uol/status', objetoUsuario);
     promessa.catch(sairDaSala);
 }
 
@@ -31,13 +34,14 @@ function carregarMensagens(){
 }
 
 function renderizarMensagens(resposta){
+    chat.innerHTML = '';
     let mensagens = resposta.data;
     let tamanho = mensagens.length - 1;
     for (let i = 0; i < tamanho; i++){
         configurarMensagem(mensagens[i]);
+        ultimaMensagem = document.querySelector('main > .mensagem:last-child');
+        ultimaMensagem.scrollIntoView();
     }
-    ultimaMensagem = document.querySelector('main > .mensagem:last-child');
-    ultimaMensagem.scrollIntoView();
 }
 
 function configurarMensagem(mensagem){
@@ -86,7 +90,31 @@ function sairDaSala(){
     alert('Você foi desconectado, entre novamente.');
     clearInterval(intervaloUm);
     clearInterval(intervaloDois);
-    entrarNaSala();
+    window.location.reload();
+}
+
+function enviarMensagem(){
+    const texto = document.querySelector('input').value;
+    if (texto !== ''){
+        mensagem = {
+            from: usuario,
+            to: to,
+            text: texto,
+            type: type
+        };
+        const promessa = axios.post('https://mock-api.driven.com.br/api/v4/uol/messages', mensagem);
+        clearInterval(intervaloUm);
+        clearInterval(intervaloDois);
+        promessa.then(carregarMensagens);
+        limparInput();
+        promessa.catch(sairDaSala);
+        promessa.then(permanecerNaSala);
+    }
+}
+
+function limparInput(){
+    let texto = document.querySelector('input');
+    texto.value = '';
 }
 
 entrarNaSala();
