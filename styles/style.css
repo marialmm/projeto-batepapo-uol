@@ -37,7 +37,11 @@ main {
     padding-top: 26px;
 }
 
-main>.mensagem {
+.chat{
+    z-index: 1;
+}
+
+.chat >.mensagem {
     border-radius: 2px;
     font-size: 14px;
     line-height: 17px;
@@ -73,6 +77,83 @@ p{
     font-weight: 700;
 }
 
+.sidebar{
+    display: flex;
+    position: fixed;
+    top: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.sidebar .vazio{
+    width: calc(100% - 259px);
+    height: 100%;
+}
+
+aside{
+    height: 100vh;
+    width: 259px;
+    background-color: #ffffff;
+    position: absolute;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+aside p{
+    width: 100%;
+}
+
+aside > p{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 17px 42px;
+    font-weight: 700;
+    line-height: 19px;
+}
+
+.participantes{
+    width: 100%;
+    height: calc(100% - 260px);
+    overflow: scroll;
+}
+
+.participantes ion-icon:first-child{
+    font-size: 30px;
+    margin-right: 8px;
+}
+
+.participantes div{
+    display: flex;
+    margin-left: 18px;
+    margin-right: 27px;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.visibilidade div{
+    display: flex;
+    margin-left: 18px;
+    margin-right: 27px;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.visibilidade div ion-icon:first-child{
+    font-size: 26px;
+    margin-right: 11px;
+}
+
+.check{
+    color: #28BB25;
+    font-size: 19px;
+}
+
 footer{
     height: 80px;
     width: 100%;
@@ -86,7 +167,7 @@ footer{
 }
 
 input{
-    width: 300px;
+    width: calc(100vw - 75px);
     font-size: 18px;
     font-style: italic;
     color: #000;
@@ -96,4 +177,8 @@ input{
 
 footer ion-icon{
     font-size: 26px;
+}
+
+.escondido{
+    display: none;
 }

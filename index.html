@@ -20,11 +20,35 @@
 <body>
     <header>
         <img src="midias/logo 1.png" alt="Logo Bate-papo UOL">
-        <ion-icon name="people-sharp"></ion-icon>
+        <ion-icon name="people-sharp" onclick="mostrarSidebar()"></ion-icon>
     </header>
 
     <main>
-        <!-- Será construído dinamicamente com o JS -->
+        <ul class="chat">
+            <!-- Será construído dinamicamente com o JS -->
+        </ul>
+        <div class="sidebar escondido">
+            <div class="vazio" onclick="ocultarSidebar()"></div>
+            <aside>
+                <p>Escolha um contato para enviar mensagem:</p>
+                <div class="participantes">
+                    <!-- Será construído dinamicamente com o JS -->
+                </div>
+                <p>Escolha a visibilidade:</p>
+                <div class="visibilidade">
+                    <div onclick="escolherVisibilidade(this)">
+                        <ion-icon name="lock-open"></ion-icon>
+                        <p>Público</p>
+                        <ion-icon name="checkmark-sharp" class="check"></ion-icon>
+                    </div>
+                    <div onclick="escolherVisibilidade(this)">
+                        <ion-icon name="lock-closed"></ion-icon>
+                        <p>Reservadamente</p>
+                        <ion-icon name="checkmark-sharp" class="check escondido"></ion-icon>
+                    </div>
+                </div>
+            </aside>
+        </div>  
     </main>
 
     <footer>
