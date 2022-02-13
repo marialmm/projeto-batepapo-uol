@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="styles/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
         rel="stylesheet">
 </head>
 
@@ -24,6 +24,18 @@
     </header>
 
     <main>
+        <section class="login">
+            <img src="midias/logo 1.png" alt="Logo Bate-papo UOL" class="logo">
+            <div class="entrada">
+                <input type="text" placeholder="Digite seu nome" class="nome">
+                <button class="entrar" onclick="entrarNaSala()">Entrar</button>
+            </div>
+            <div class="loading escondido">
+                <img src="midias/loading.gif" alt="Gif loading">
+                <p>Entrando...</p>
+            </div>
+        </section>
+
         <ul class="chat">
             <!-- Será construído dinamicamente com o JS -->
         </ul>
@@ -52,8 +64,13 @@
     </main>
 
     <footer>
-        <input type="text" placeholder="Escreva aqui...">
-        <ion-icon name="paper-plane-outline" onclick="enviarMensagem()"></ion-icon>
+        <div class="input">
+            <input type="text" placeholder="Escreva aqui...">
+            <p>Enviando para todos (Pública)</p>
+        </div>
+        <input type="submit" value="" onclick="enviarMensagem()" class = "submit">
+        <ion-icon name="paper-plane-outline"></ion-icon>
+        
     </footer>
 
     <script type="module" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.esm.js"></script>

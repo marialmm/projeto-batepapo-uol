@@ -1,7 +1,9 @@
-// let usuario = prompt('Qual seu nome?');
-let usuario = 'teste';
+let usuario = null;
 let objetoUsuario = null;
 const chat = document.querySelector('.chat');
+const telaEntrada = document.querySelector('.entrada');
+const telaLoading = document.querySelector('.loading');
+const telaLogin = document.querySelector('.login');
 let ultimaMensagem = null;
 let intervaloUm = null;
 let intervaloDois = null;
@@ -9,6 +11,7 @@ let to = 'Todos';
 let type = 'message';
 
 function entrarNaSala(){
+    usuario = document.querySelector('.nome').value
     objetoUsuario = {
         name: usuario
     };
@@ -17,6 +20,8 @@ function entrarNaSala(){
     promessa.then(carregarParticipantes);
     promessa.then(permanecerNaSala);
     promessa.catch(checarUsuario);
+    telaEntrada.classList.add('escondido');
+    telaLoading.classList.remove('escondido');
 }
 
 function enviarUsuario(){
@@ -26,8 +31,8 @@ function enviarUsuario(){
 
 function checarUsuario(erro){
     statusCode = erro.response.status;
-    usuario = prompt('Usuário já existe, insira outro.');
-    entrarNaSala();
+    alert('Usuário já existe, insira outro.');
+    telaEntrada.classList.remove('escondido');
 }
 
 function carregarMensagens(){
@@ -36,6 +41,7 @@ function carregarMensagens(){
 }
 
 function renderizarMensagens(resposta){
+    telaLogin.classList.add('escondido');
     chat.innerHTML = '';
     let mensagens = resposta.data;
     let tamanho = mensagens.length - 1;
@@ -44,6 +50,7 @@ function renderizarMensagens(resposta){
         ultimaMensagem = document.querySelector('.chat > .mensagem:last-child');
         ultimaMensagem.scrollIntoView();
     }
+    enviarPara();
 }
 
 function configurarMensagem(mensagem){
@@ -74,10 +81,10 @@ function configurarMensagemNormal(mensagem){
 }
 
 function configurarMensagemPrivada(mensagem){
-    if (mensagem.to === usuario || mensagem.from === usuario){
+    if (mensagem.to === usuario || mensagem.from === usuario || mensagem.to === 'Todos'){
         chat.innerHTML += `
         <li class="mensagem reservada">
-            <p class="mensagem"><span class="time">(${mensagem.time}) </span><strong class="nome from">${mensagem.from}</strong> reservadamente para <strong class="nome to">${mensagem.to}</strong>: ${mensagem.type}</p>
+            <p class="mensagem"><span class="time">(${mensagem.time}) </span><strong class="nome from">${mensagem.from}</strong> reservadamente para <strong class="nome to">${mensagem.to}</strong>: ${mensagem.text}</p>
         </li>
         `
     }
@@ -128,6 +135,7 @@ function escolherParticipante(div){
     const participante = div.querySelector('p');
     to = participante.innerHTML;
     marcarCheck('participantes', div);
+    enviarPara();
 }
 
 function escolherVisibilidade(div){
@@ -138,6 +146,7 @@ function escolherVisibilidade(div){
         type = 'private_message';
     }
     marcarCheck('visibilidade', div);
+    enviarPara();
 }
 
 function marcarCheck(div, escolhido){
@@ -149,8 +158,20 @@ function marcarCheck(div, escolhido){
     check.classList.remove('escondido');
 }
 
+function enviarPara(){
+    let aviso = document.querySelector('footer p');
+    let visibilidade = null;
+    if (type === 'message'){
+        visibilidade = 'pública';
+    } else if(type === 'private_message'){
+        visibilidade = 'reservadamente'
+    }
+    aviso.innerHTML = `Enviando para ${to} (${visibilidade})`;
+}
+
 function enviarMensagem(){
-    const texto = document.querySelector('input').value;
+    const texto = document.querySelector('footer input').value;
+    
     if (texto !== ''){
         mensagem = {
             from: usuario,
@@ -170,7 +191,7 @@ function enviarMensagem(){
 }
 
 function limparInput(){
-    let texto = document.querySelector('input');
+    let texto = document.querySelector('footer input');
     texto.value = '';
 }
 
@@ -187,8 +208,9 @@ function sairDaSala(){
     window.location.reload(true);
 }
 
-
-
-
-
-entrarNaSala();
+document.addEventListener("keypress", function(e) {
+    if(e.key === 'Enter') {
+        let btn = document.querySelector(".submit");
+      btn.click();
+    }
+  });

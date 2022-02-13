@@ -32,6 +32,72 @@ header ion-icon {
     font-size: 42px;
 }
 
+.login{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: 4;
+    top: 0;
+    left: 0;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login .logo{
+    width: 130px;
+    height: 92px;
+    margin: 72px auto;
+}
+
+.entrada{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login input{
+    width: 216px;
+    height: 54px;
+    text-align: center;
+    border: solid 1px #D7D7D7;
+    margin: 15px auto;
+    border-radius: 4px;
+    font-size: 18px;
+    color: #AEAEAE;
+    font-weight: 400;
+}
+
+.login button{
+    width: 109px;
+    height: 45px;
+    background-color: #E7E7E7;
+    text-align: center;
+    border-radius: 9px;
+    border: none;
+    font-size: 18px;
+    font-weight: 400;
+    color: #696969;
+}
+
+.loading{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.loading p{
+    width: 100%;
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.loading img{
+    margin-bottom: 18px;
+    width: 108px;
+}
+
 main {
     margin: 80px 0px;
     padding-top: 26px;
@@ -166,17 +232,36 @@ footer{
     padding: 25px 17px;
 }
 
-input{
+footer .input input{
     width: calc(100vw - 75px);
     font-size: 18px;
     font-style: italic;
     color: #000;
     border: none;
+    line-height: 25px;
 }
 
 
 footer ion-icon{
     font-size: 26px;
+}
+
+footer p{
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 25px;
+    color: #505050;
+    width: 100%;
+}
+
+footer > input{
+    position: absolute;
+    background-color: transparent;
+    right: 19px;
+    top: 28px;
+    width: 23px;
+    z-index: 2;
+    border: none;
 }
 
 .escondido{
