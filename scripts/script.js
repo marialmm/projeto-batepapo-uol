@@ -33,6 +33,7 @@ function checarUsuario(erro){
     statusCode = erro.response.status;
     alert('Usuário já existe, insira outro.');
     telaEntrada.classList.remove('escondido');
+    telaLoading.classList.add('escondido');
 }
 
 function carregarMensagens(){
